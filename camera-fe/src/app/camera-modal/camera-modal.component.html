@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Camera</h1>
+<form [formGroup]="cameraForm" (ngSubmit)="saveCamera()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input placeholder="Name" matInput formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <input placeholder="Model" matInput formControlName="model">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Resolution</mat-label>
+      <input placeholder="Resolution" matInput formControlName="resolution">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>IP</mat-label>
+      <input placeholder="IP" matInput formControlName="ip">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="basic" mat-dialog-close>Close</button>
+    <button type="submit" mat-raised-button color="primary" cdkFocusInitial>{{actionBtn}}</button>
+  </div>
+</form>
