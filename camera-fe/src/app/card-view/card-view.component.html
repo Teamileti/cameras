@@ -1,0 +1,38 @@
+
+
+<div class="content">
+    <div class = "item" *ngFor="let element of cameras">
+      <mat-card class="mat-elevation-z4" >
+        <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+      <mat-card-header>
+        <mat-card-title>{{element.name}}</mat-card-title>
+        <mat-card-subtitle>Description</mat-card-subtitle>
+      </mat-card-header>
+        <mat-card-content>
+            <p>{{element.model}}</p>
+            <p>{{element.resolution}}</p>
+            <p>{{element.ip}}</p>
+            <p>{{element.lat}}</p>
+            <p>{{element.lon}}</p>
+        </mat-card-content>
+ </mat-card>
+    </div>
+
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Edit camera data</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Delete camera</span>
+        </button>
+      </mat-menu>
+</div>
+
+
+
+

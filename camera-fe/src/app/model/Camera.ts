@@ -5,4 +5,5 @@ export interface Camera{
   resolution: string,
   ip: string,
   isEdit: boolean
+  isSelected: boolean
 }

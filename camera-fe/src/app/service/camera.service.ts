@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Camera} from "../model/Camera";
+import * as http from "http";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,14 @@ export class CameraService {
 
   putCamera(camera: Camera, id: string): Observable<any>{
     return this.http.put<Camera>(`${this.url}` + 'updateCameras?cameraId=' + id , camera)
+  }
+
+  deleteCamerasById(ids: string[]): Observable<any>{
+   let params = new HttpParams();
+   ids.forEach(id => params = params.append('ids', id));
+   return this.http.delete(`${this.url}deleteCameras`, {
+     params
+   } )
   }
 
 

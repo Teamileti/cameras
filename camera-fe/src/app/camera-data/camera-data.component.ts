@@ -7,6 +7,8 @@ import {Camera} from "../model/Camera";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import { MatDialog } from '@angular/material/dialog';
 import {CameraModalComponent} from "../camera-modal/camera-modal.component";
+import {DataSource, SelectionModel} from '@angular/cdk/collections';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-camera-data',
@@ -16,8 +18,9 @@ import {CameraModalComponent} from "../camera-modal/camera-modal.component";
 
 export class CameraDataComponent implements OnInit, AfterViewInit {
   camera: any[] = [];
-  displayedColumns: string[] = ['name', 'model', 'resolution', 'ip', 'actions'];
+  displayedColumns: string[] = ['select', 'name', 'model', 'resolution', 'ip', 'lat', 'lon', 'actions'];
   dataSource = new MatTableDataSource<any>();
+  selection = new SelectionModel<Camera>(true, []);
 
   constructor(public dialog: MatDialog, public cameraService: CameraService) {
   }
@@ -85,6 +88,56 @@ export class CameraDataComponent implements OnInit, AfterViewInit {
       }
     })
   }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    if (this.isAllSelected()){
+      this.selection.clear();
+    }
+    else {
+      this.dataSource.data.forEach(row => this.selection.select(row));
+      console.log(this.selection.selected)
+    }
+  }
+
+  removeSelectedRows() {
+    this.dialog
+      .open(DeleteDialogComponent, {
+        data:{
+            message: 'Are u sure you want to delete all the selected rows??'
+        }})
+      .afterClosed().subscribe(
+        (confirmed: any) => {
+        if (confirmed) {
+          //console.log(this.selection.selected)
+          const ids = this.selection.selected.map((camera: Camera) => camera.id)
+          console.log(ids)
+          this.cameraService.deleteCamerasById(ids).subscribe( () =>
+            {
+              this.getDataCamera();
+              this.selection = new SelectionModel<Camera>(true, []);
+            }
+          )
+   //  this.selection.selected.forEach(item => {
+   //   let index: number = this.dataSource.data.findIndex(d => d === item);
+   //   console.log(this.dataSource.data.findIndex(d => d === item));
+   //   //console.log(item);
+   //   this.dataSource.data.splice(index,1);
+   //
+   //   this.dataSource = new MatTableDataSource<Camera>(this.dataSource.data);
+   // });
+   // this.selection = new SelectionModel<Camera>(true, []);
+ }
+}
+      )
+}
+
 }
 
 

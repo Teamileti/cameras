@@ -23,7 +23,9 @@ actionBtn: string = "Save";
       name: new FormControl(''),
       model: new FormControl(''),
       resolution: new FormControl(''),
-      ip: new FormControl('')
+      ip: new FormControl(''),
+      lat: new FormControl(''),
+      lon: new FormControl('')
     });
 
     console.log(this.editCameraData)
@@ -33,6 +35,8 @@ actionBtn: string = "Save";
       this.cameraForm.controls['model'].setValue(this.editCameraData.model);
       this.cameraForm.controls['resolution'].setValue(this.editCameraData.resolution);
       this.cameraForm.controls['ip'].setValue(this.editCameraData.ip);
+      this.cameraForm.controls['lat'].setValue(this.editCameraData.lat);
+      this.cameraForm.controls['lon'].setValue(this.editCameraData.lon);
     }
 
   }

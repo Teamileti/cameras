@@ -1,1 +1,26 @@
-<app-camera-data></app-camera-data>
+<mat-toolbar color="primary" class="example-toolbar">
+  <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+  <h1 class="example-app-name">Cameras Application</h1>
+</mat-toolbar>
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)= "mouseleave()">
+    <mat-nav-list>
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+        <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
+        <mat-icon mat-list-icon>home</mat-icon>
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+      </mat-list-item>
+      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+        <a mat-list-item routerLink="/camera-list"><mat-icon mat-list-icon>list</mat-icon>Cameras List</a>
+        <a mat-list-item routerLink="/card-view"><mat-icon mat-list-icon>credit_card</mat-icon>Card View</a>
+        <a mat-list-item routerLink="/camera-map"><mat-icon mat-list-icon>map</mat-icon>Cameras Map</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+
+
+    <router-outlet>
+    </router-outlet>
+
+</mat-sidenav-container>
+

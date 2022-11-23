@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CameraDataComponent } from './camera-data/camera-data.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -20,6 +20,16 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { CameraMapComponent } from './camera-map/camera-map.component';
+import {MarkerService} from "./marker.service";
+import { MarkerPopupService } from './marker-popup.service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CardViewComponent } from './card-view/card-view.component'
+import { MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatSliderModule } from '@angular/material/slider';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component'; 
 
 
 
@@ -32,6 +42,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     DeleteDialogComponent,
     CameraModalComponent,
     SidenavComponent,
+    CameraMapComponent,
+    routingComponents,
+    CardViewComponent,
+    LoginComponent,
+    RegisterComponent,
 
   ],
   imports: [
@@ -51,8 +66,18 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatMenuModule,
+    MatSliderModule,
+
+
+    
   ],
-  providers: [],
+  providers: [
+    MarkerService,
+    MarkerPopupService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
