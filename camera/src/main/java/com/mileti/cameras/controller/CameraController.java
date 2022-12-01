@@ -35,7 +35,7 @@ public class CameraController {
     }
 
     @DeleteMapping("/deleteCameraById")
-    public ResponseEntity<String> deleteCamera(@RequestParam("cameraId") String id){
+    public ResponseEntity<Void> deleteCamera(@RequestParam("cameraId") String id){
         return cameraService.deleteCameraById(id);
     }
 

@@ -34,11 +34,11 @@ public class CameraService {
         }
     }
 
-    public ResponseEntity<String> deleteCameraById(String id) {
+    public ResponseEntity<Void> deleteCameraById(String id) {
         Camera camera =  cameraRepository.findCameraById(id);
         if (camera != null){
             cameraRepository.deleteById(id);
-            return ResponseEntity.ok("Camera was successfully deleted");
+            return ResponseEntity.noContent().build();
         }
         else {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();

@@ -3,4 +3,10 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/ertugert
 
+#  security.app.jwtSecret= secretKey
+#  security.app.jwtExpirationMs= 86400000
+security:
+  app:
+    jwtSecret: secretKey
+    jwtExpirationMs: 86400000
 
