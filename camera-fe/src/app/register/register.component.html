@@ -1,1 +1,81 @@
-<p>register works!</p>
+
+<div class="container">
+  <h2 class="section-title">Register new User</h2>
+
+  <form *ngIf="!isSuccessful" novalidate (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+
+    <mat-form-field class="full-width">
+      <mat-icon matPrefix>person_outline</mat-icon>
+      <input matInput
+             placeholder="Username"
+             class="form-control"
+             [(ngModel)]="form.username"
+             required
+             minlength="3"
+             maxlength="20"
+             #username="ngModel"
+             [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+             [ngModelOptions]="{standalone: true}">
+      <mat-error *ngIf="username.errors && f.submitted">
+        <mat-error class="error-message" *ngIf="username.errors['required']">Username is required</mat-error>
+        <mat-error class="error-message" *ngIf="username.errors['minlength']">Username must be at least 3 characters</mat-error>
+        <mat-error class="error-message" *ngIf="username.errors['maxlength']">Username must be at most 20 characters</mat-error>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+      <mat-icon matPrefix>email</mat-icon>
+      <input matInput
+             type="email"
+             placeholder="Email"
+             class="form-control"
+             [(ngModel)]="form.email"
+             required
+             email
+             #email="ngModel"
+             [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+             [ngModelOptions]="{standalone: true}">
+      <mat-error *ngIf="email.errors && f.submitted">
+        <mat-error class="error-message" *ngIf="email.errors['required']">Email is required</mat-error>
+        <mat-error class="error-message" *ngIf="email.errors['email']">Email must be email type</mat-error>
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="full-width">
+      <mat-icon matPrefix>lock_outline</mat-icon>
+      <input matInput
+             type="password"
+             name="password"
+             placeholder="Password"
+             class="form-control"
+             [(ngModel)]="form.password"
+             required
+             minlength="6"
+             #password="ngModel"
+             [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+             [ngModelOptions]="{standalone: true}">
+      <mat-error *ngIf="password.errors && f.submitted">
+        <mat-error class="error-message" *ngIf="password.errors['required']">Password is required</mat-error>
+        <mat-error class="error-message" *ngIf="password.errors['minlength']">Password should be at least 6 characters</mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <div>
+      <span>Already have an account? <a routerLink="/login"> Login</a></span>
+    </div>
+    <button class="submit-btn" color="primary" mat-raised-button type="submit">
+      Submit
+    </button>
+    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">-->
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+
+  </form>
+  <div class="alert alert-success" *ngIf="isSuccessful">-->
+    {{successMessage}}
+  </div>
+
+</div>
+

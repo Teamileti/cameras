@@ -18,19 +18,20 @@
             <p>{{element.lon}}</p>
         </mat-card-content>
  </mat-card>
-    </div>
+<!--    </div>-->
 
 
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="editCamera(element)">
           <mat-icon>edit</mat-icon>
           <span>Edit camera data</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="removeRow(element.id)">
           <mat-icon>delete</mat-icon>
           <span>Delete camera</span>
         </button>
       </mat-menu>
+</div>
 </div>
 
 

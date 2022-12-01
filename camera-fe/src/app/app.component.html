@@ -1,9 +1,10 @@
+
 <mat-toolbar color="primary" class="example-toolbar">
   <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
   <h1 class="example-app-name">Cameras Application</h1>
 </mat-toolbar>
-<mat-sidenav-container class="example-container" autosize>
-  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)= "mouseleave()">
+<mat-sidenav-container  class="example-container" autosize>
+  <mat-sidenav  #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)= "mouseleave()">
     <mat-nav-list>
       <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
         <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
@@ -18,9 +19,8 @@
     </mat-nav-list>
   </mat-sidenav>
 
-
     <router-outlet>
     </router-outlet>
 
-</mat-sidenav-container>
 
+</mat-sidenav-container>

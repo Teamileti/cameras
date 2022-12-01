@@ -1,0 +1,34 @@
+/*app-forms-page {*/
+.container {
+  position: fixed; right: 30%; left: 30%;
+  width: 50%;
+  margin-top: 50px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  font-size: 12px;
+}
+
+.double-line-hint {
+  .mat-input-hint-wrapper {
+    flex-wrap: wrap;
+
+    .hint-line {
+      flex: 0 0 100%;
+    }
+  }
+}
+
+.submit-btn {
+  margin-top: 30px;
+}
+

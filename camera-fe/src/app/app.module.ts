@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routingComponents} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CameraDataComponent } from './camera-data/camera-data.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -15,7 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { CameraModalComponent } from './camera-modal/camera-modal.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
@@ -29,7 +29,8 @@ import { MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component'; 
+import { RegisterComponent } from './register/register.component';
+import {InterceptorService} from "./service/interceptor.service";
 
 
 
@@ -49,34 +50,39 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    MatListModule,
-    MatToolbarModule,
-    MatCheckboxModule,
-    MatCardModule,
-    MatMenuModule,
-    MatSliderModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        MatListModule,
+        MatToolbarModule,
+        MatCheckboxModule,
+        MatCardModule,
+        MatMenuModule,
+        MatSliderModule,
+        FormsModule,
 
 
-    
-  ],
+    ],
   providers: [
     MarkerService,
-    MarkerPopupService
+    MarkerPopupService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
